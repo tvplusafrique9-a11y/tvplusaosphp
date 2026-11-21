@@ -176,35 +176,31 @@ Route::prefix('v1')->middleware(['auth:sanctum', 'throttle:60,1'])->group(functi
     });
 
     Route::prefix('intervenants')->group(function () {
-        Route::post('/scan', function (Request $request) {
-            $validated = $request->validate([
-                'code' => 'required|string',
-                'poste' => 'required|string',
-            ]);
-
+        // Placeholder endpoints: explicitly report that these workflows are not
+        // implemented rather than returning a misleading success response.
+        Route::post('/scan', function () {
             return response()->json([
-                'success' => true,
-                'message' => 'Intervenant scanné',
-                'code' => $validated['code'],
-                'poste' => $validated['poste'],
-            ]);
+                'success' => false,
+                'message' => 'Cette route API historique n’est pas implémentée. Utilisez le scanner QR du module RH.',
+            ], 501);
         });
 
-        Route::get('/liste', function (Request $request) {
+        Route::get('/liste', function () {
             return response()->json([
-                'success' => true,
+                'success' => false,
                 'data' => [],
-                'message' => 'Liste des intervenants',
-            ]);
+                'message' => 'Cette route API historique n’est pas implémentée.',
+            ], 501);
         });
     });
 
     Route::prefix('conducteurs')->group(function () {
-        Route::post('/sync', function (Request $request) {
+        // Placeholder endpoint: do not claim synchronization until implemented.
+        Route::post('/sync', function () {
             return response()->json([
-                'success' => true,
-                'message' => 'Synchronisation du conducteur effectuée',
-            ]);
+                'success' => false,
+                'message' => 'Cette route API historique n’est pas implémentée.',
+            ], 501);
         });
     });
 });
